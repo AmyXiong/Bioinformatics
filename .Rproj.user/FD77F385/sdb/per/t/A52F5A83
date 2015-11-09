@@ -1,0 +1,18 @@
+{
+    "contents" : "#install.packages(\"seqinr\")\nlibrary(\"seqinr\")\n\nalignmentGeneious <- read.fasta(file = \"Alignment - geneious(fasta).fasta\")\nprimateseq <- alignmentGeneious[[1]]\nlength(primateseq)\ntable(primateseq)\nprimateseq[1:2151]\n\n# GC content = (number of Gs + number of Cs)*100/(genome length)\nGCpercent <- (192+232)*100/(139+232+192+139)\nGCpercent\nGC(primateseq) # This function automatically omits \"-\"\n\n# Calculate GC content every 500 nucleotides\nstarts <- seq(1, length(primateseq)-50, by = 50)\nstarts\nfor (i in 1:length(starts)) {\n  chunk <- primateseq[starts[i]:(starts[i]+49)]\n  chunkGC <- GC(chunk)\n  print (chunkGC) \n}\n\n# This is a sliding window plot of GC content\nStarts <- seq(1, length(primateseq)-50, by = 50)\nn <- length(Starts)    # Find the length of the vector \"starts\"\nchunkGCs <- numeric(n) # Make a vector of the same length as vector \"starts\", but just containing zeroes\nfor (i in 1:n) {\n  Chunk <- primateseq[starts[i]:(starts[i]+49)]\n  ChunkGC <- GC(Chunk)\n  print(ChunkGC)\n  chunkGCs[i] <- ChunkGC\n}\nplot(starts,chunkGCs,type=\"b\",xlab=\"Nucleotide start position\",ylab=\"GC content\")\n\n\n",
+    "created" : 1446426690563.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3053467080",
+    "id" : "A52F5A83",
+    "lastKnownWriteTime" : 1446432793,
+    "path" : "~/Documents/RProgram/Bioinformatics/Bioinformatics.R",
+    "project_path" : "Bioinformatics.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
